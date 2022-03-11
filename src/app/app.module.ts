@@ -10,6 +10,7 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     Hex2textComponent,
     FileUploadComponent
   ],
-  imports: [MatToolbarModule,
+  imports: [MatToolbarModule,MatTooltipModule,
     BrowserModule, HttpClientModule, BrowserAnimationsModule,MatTabsModule,MatGridListModule,MatSidenavModule,
     ClipboardModule
   ],

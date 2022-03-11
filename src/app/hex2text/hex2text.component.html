@@ -15,48 +15,56 @@
 
     <div *ngIf="showFiller">
 
-
-      Lorem, ipsum dolor sit amet consectetur.
 <hr>
-      <app-file-upload></app-file-upload>
-
+      <app-file-upload (onLoadF)="read($event)"></app-file-upload>
+<hr>
+    <b  #tooltip="matTooltip"
+        matTooltip="Copied to clipboard"
+        matTooltipPosition="right">Clipboard</b>
+      <div class="box" id="trigger" (click)="tooltip.show(10)">
+      {{clipboardContent}}
+    </div>
     </div>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <div class="gcontent" *ngIf="resultHex">
-      <div class="gr g1">
-         <span  (mouseover)="mOver(nm)" (mousedown)="res(nm)" (mouseup)="resu(nm)" [class]="'grm hexF '.concat(nm.act)" *ngFor="let nm of resultHex">
+    <mat-tab-group *ngIf="resultHex" (selectedTabChange)="selectTab($event)" [(selectedIndex)]="seleT">
+      <mat-tab *ngFor="let tt of tabs" [label]="tt.name" >
+        <div class="gcontent" (mouseup)="mouseUp()" >
+        <div class="gr g1">
+         <span  (mouseover)="mOver(nm)" (mousedown)="res(nm)" (mouseup)="resu(nm)" [class]="'grm hexF '.concat(nm.act)" *ngFor="let nm of tt.resulthex">
           {{nm.hex}}
 
 
         </span>
 
-      </div>
+        </div>
 
 
-      <div  class="gr g2">
-      <span  [class]="'grm textF '.concat(nm.act)" *ngFor="let nm of resultHex">
+        <div  class="gr g2">
+      <span  [class]="'grm textF '.concat(nm.act)" *ngFor="let nm of tt.resulthex">
           {{nm.ascii}}
 
 
         </span>
+        </div>
+
+
+
       </div>
 
 
+      </mat-tab>
 
-    </div>
+    </mat-tab-group>
+
+
+
 
 
 
 <!--
-<mat-tab-group>
-  <mat-tab  label="example 1"></mat-tab>
-  <mat-tab label="example 2">{{resv(2)}} </mat-tab>
-  <mat-tab label="binary1"> {{resv(3)}} </mat-tab>
-  <mat-tab label="binary2">{{resv(4)}}  </mat-tab>
-  <mat-tab label="binary3"> {{resv(5)}}  </mat-tab>
-</mat-tab-group>
+
 
   -->
   </div>

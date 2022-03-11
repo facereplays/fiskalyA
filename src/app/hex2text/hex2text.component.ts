@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FileReadService} from "./file-read.service";
-import { Clipboard } from '@angular/cdk/clipboard';
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {Clipboard} from '@angular/cdk/clipboard';
 
+class tab {
+  resulthex: pair[];
+  name: string;
+}
 
 class pair {
-  hex:string;
+  hex: string;
   ascii: string;
   pos: number;
   act: string;
@@ -21,89 +24,124 @@ export class Hex2textComponent implements OnInit {
   public asciiRes: string;
   public hexaRes: string;
   public asciiInp: string;
-public resultHex: pair[];
-selecting = false;
-startSel:number;
-  endSel:number;
-  showFiller=false;
+  public resultHex: pair[];
+  selecting = false;
+  startSel: number;
+  endSel: number;
+  showFiller = false;
   selectedFiles: any[];
+  clipboardContent: string;
+  tabs: tab[];
+  seleT: number;
 
-  constructor(private fileService:FileReadService,private clipboard: Clipboard) {
+  constructor(private fileService: FileReadService, private clipboard: Clipboard) {
   }
-res(n: pair){
-    this.resultHex.forEach(a=>{a.act=''});
-this.startSel=n.pos;
-  n.act='act';
-  this.selecting= true;
-}
+
+  res(n: pair) {
+    this.resultHex.forEach(a => {
+      a.act = ''
+    });
+    this.startSel = n.pos;
+    n.act = 'act';
+    this.selecting = true;
+  }
 
   resu(nm) {
-    this.selecting= false;
+    let tex = '';
+    this.selecting = false;
     const sel = document.getSelection();
-    if(nm.pos>this.startSel){
-      this.endSel=nm.pos;
+    if (nm.pos > this.startSel) {
+      this.endSel = nm.pos;
 
-    }else{
-      this.endSel=this.startSel;
-      this.startSel=nm.pos;
+    } else {
+      this.endSel = this.startSel;
+      this.startSel = nm.pos;
     }
-   for(let i = this.startSel;i<=this.endSel;i++){
-     this.resultHex[i].act='act';
-    // console.log(i);
-   }
-    this.clipboard.copy('dsfsdf');
+    for (let i = this.startSel; i <= this.endSel; i++) {
+      this.resultHex[i].act = 'act';
+      tex += this.resultHex[i].hex + ' ';
+      // console.log(i);
+    }
+    let element: HTMLElement = document.getElementById('trigger') as HTMLElement;
+    element.click();
+    this.clipboardContent = tex;
+    this.clipboard.copy(tex);
     sel.removeAllRanges();
   }
-  mOver(nm){
-    if(this.selecting){
-      nm.act='act';
+
+  mOver(nm) {
+    if (this.selecting) {
+      nm.act = 'act';
+      if (nm.pos > this.startSel) {
+        this.endSel = nm.pos;
+
+      } else {
+        this.endSel = this.startSel;
+        this.startSel = nm.pos;
+      }
+      for (let i = this.startSel; i <= this.endSel; i++) {
+        this.resultHex[i].act = 'act';
+
+      }
+
 
     }
 
   }
-  resv(n){
-   // console.log(n);
+
+  read(strns) {
+    const str = strns[0];
+    const myArr = new Uint8Array(str.length);
+    this.resultHex = [];
+    myArr.forEach((n, i) => {
+      if (str.charCodeAt(i) != 0) {
+        this.resultHex.push({act: '', hex: str.charCodeAt(i).toString(16), pos: i, ascii: str[i]} as pair);
+      } else {
+        this.resultHex.push({act: '', hex: '00', pos: i, ascii: '.'} as pair);
+
+
+      }
+    });
+    const nt = new tab();
+    nt.name = strns[1];
+    nt.resulthex = this.resultHex;
+    this.tabs.push(nt);
+    this.seleT = this.tabs.length - 1;
+  }
+
+  resv(n) {
+    // console.log(n);
 
   }
+
   ngOnInit(): void {
-    this.resultHex=[];
+    this.seleT = 0;
+    this.resultHex = [];
     this.hexaInp = '54 65 73 74 69 6e 67 20 68 65 78 20 63 6f 6d 70 6f 6e 65 6e 74 20 66 6f 72 20 63 6f 64 65 20 63 68 61 6c 6c 65 6e 67 65';
-this.fileService.readFile('assets/binary1.bin').subscribe(
-  str=>{
-    console.log(str);
-    /*   const myArr = new Uint8Array(str.length);
-  myArr.forEach((n,i)=>{
-    console.log("Index value: "+ i +" has a byte code of: " + str.charCodeAt(i) + " for the char: " + str.charAt(i));
-    this.resultHex.push({act: '', hex:str.charCodeAt(i).toString(16),pos:i,ascii:str.charAt(i)} as pair);
+    this.fileService.readFile('assets/test.svg').subscribe(
+      str => {
 
-  });
- */
-    const view = new Uint8Array(str);
+        const view = new Uint8Array(str);
 
-     view.forEach((n,i)=>{
- this.resultHex.push({act: '', hex:n.toString(16),pos:i,ascii:String.fromCharCode(n)} as pair);
-       console.log(i,n);
-
-     });
-    // contr=btoa(str0);
-    /*
-
-     for(var i = 0; i < Object.keys(str).length; i++){
+        view.forEach((n, i) => {
+          if (n !== 0) {
+            this.resultHex.push({act: '', hex: n.toString(16), pos: i, ascii: String.fromCharCode(n)} as pair);
+          } else {
+            this.resultHex.push({act: '', hex: '00', pos: i, ascii: '.'} as pair);
 
 
-       //console.log("Index value: "+ i +" has a byte code of: " + str.charCodeAt(i) + " for the char: " + str.charAt(i))
-       myArr[i] = str.charCodeAt(i);
-     }
- */
+          }
+
+          //this.resultHex.push({act: '', hex:n.toString(16),pos:i,ascii:String.fromCharCode(n)} as pair);
 
 
+        });
+        this.tabs = [{name: 'test.svg', resulthex: this.resultHex} as tab];
 
+
+      }
+    );
   }
-
-);
-  }
-
-
 
 
   hex_to_ascii(str1: string): string {
@@ -116,5 +154,11 @@ this.fileService.readFile('assets/binary1.bin').subscribe(
   }
 
 
+  mouseUp() {
+    this.selecting = false;
+  }
 
+  selectTab(event: any) {
+    this.resultHex = this.tabs[event.index].resulthex;
+  }
 }

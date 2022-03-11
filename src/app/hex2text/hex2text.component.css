@@ -1,19 +1,45 @@
-.hexF{width:2em}
-.textF{width:1em}
-.grm{display:inline-block;overflow: hidden}
-.act{background-color: lightsteelblue}
+.hexF {
+  width: 2em
+}
 
-.gr{font-family: "Source Code Pro", "HexEd.it Symbols", "Courier New", Consolas, Menlo, "PT Mono", "Liberation Mono", monospace;}
-.g1{width:64%}
-.g2{width:32%}
-.gcontent{
-  display:flex;
+.textF {
+  width: 1em
+}
+
+.grm {
+  display: inline-block;
+  overflow: hidden
+}
+
+.act {
+  background-color: lightsteelblue
+}
+
+.gr {
+  font-family: "Source Code Pro", "HexEd.it Symbols", "Courier New", Consolas, Menlo, "PT Mono", "Liberation Mono", monospace;
+display:flex;flex-wrap:wrap;
+}
+.box{
+  max-width:200px;
+  font-size:0.8em;
+}
+.g1 {
+  width: 64%
+}
+
+.g2 {
+  width: 32%
+}
+
+.gcontent {
+  display: flex;
   justify-content: space-evenly;
 
 }
+
 .example-container {
   width: auto;
-  margin-top:2em;
+  margin-top: 2em;
 
 }
 
