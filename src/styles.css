@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+::selection { background-color: lightsteelblue; }
+@charset "UTF-8";
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: local("Source Code Pro"), local("SourceCodePro-Regular"), url(/assets/woff/sourcecodepro-regular.Dfl0S24W.woff) format("woff");
+}
+@font-face {
+  font-family: "HexEd.it Symbols";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: local("HexEd.it Symbols"), url(/assets/woff/hexedit-symbols.vpp2pyvB.woff) format("woff");
+}
