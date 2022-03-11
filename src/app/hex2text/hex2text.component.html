@@ -1,0 +1,64 @@
+
+<mat-toolbar color="primary">
+
+
+  <h3> Challenge</h3>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
+
+
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      To
+    </button>
+
+    <div *ngIf="showFiller">
+
+
+      Lorem, ipsum dolor sit amet consectetur.
+<hr>
+      <app-file-upload></app-file-upload>
+
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <div class="gcontent" *ngIf="resultHex">
+      <div class="gr g1">
+         <span  (mouseover)="mOver(nm)" (mousedown)="res(nm)" (mouseup)="resu(nm)" [class]="'grm hexF '.concat(nm.act)" *ngFor="let nm of resultHex">
+          {{nm.hex}}
+
+
+        </span>
+
+      </div>
+
+
+      <div  class="gr g2">
+      <span  [class]="'grm textF '.concat(nm.act)" *ngFor="let nm of resultHex">
+          {{nm.ascii}}
+
+
+        </span>
+      </div>
+
+
+
+    </div>
+
+
+
+<!--
+<mat-tab-group>
+  <mat-tab  label="example 1"></mat-tab>
+  <mat-tab label="example 2">{{resv(2)}} </mat-tab>
+  <mat-tab label="binary1"> {{resv(3)}} </mat-tab>
+  <mat-tab label="binary2">{{resv(4)}}  </mat-tab>
+  <mat-tab label="binary3"> {{resv(5)}}  </mat-tab>
+</mat-tab-group>
+
+  -->
+  </div>
+
+</mat-drawer-container>
