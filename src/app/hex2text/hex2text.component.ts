@@ -28,7 +28,7 @@ export class Hex2textComponent implements OnInit {
   selecting = false;
   startSel: number;
   endSel: number;
-  showFiller = false;
+  showFiller = true;
   selectedFiles: any[];
   clipboardContent: string;
   tabs: tab[];
