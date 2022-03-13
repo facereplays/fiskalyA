@@ -139,7 +139,10 @@ nm.act='act';
     this.resultHex = [];
     myArr.forEach((n, i) => {
       if (str.charCodeAt(i) != 0) {
-        this.resultHex.push({act: '', hex: str.charCodeAt(i).toString(16), pos: i, ascii: str[i]} as pair);
+
+        let ghex=str.charCodeAt(i).toString(16);
+        if (ghex.length ==1 ) ghex='0'.concat(ghex);
+        this.resultHex.push({act: '', hex: ghex, pos: i, ascii: str[i]} as pair);
       } else {
         this.resultHex.push({act: '', hex: '00', pos: i, ascii: '.'} as pair);
  }
@@ -178,7 +181,9 @@ nm.act='act';
 
         view.forEach((n, i) => {
           if (n !== 0) {
-            this.resultHex.push({act: '', hex: n.toString(16), pos: i, ascii: String.fromCharCode(n)} as pair);
+            let ghex=n.toString(16);
+            if (ghex.length ==1 ) ghex='0'.concat(ghex);
+            this.resultHex.push({act: '', hex: ghex, pos: i, ascii: String.fromCharCode(n)} as pair);
           } else {
             this.resultHex.push({act: '', hex: '00', pos: i, ascii: '.'} as pair);
 
