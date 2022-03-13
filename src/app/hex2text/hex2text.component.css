@@ -10,6 +10,7 @@
   display: inline-block;
   overflow: hidden;
   text-transform: uppercase;
+  unicode-bidi: bidi-override;
 }
 .grmb
 {
