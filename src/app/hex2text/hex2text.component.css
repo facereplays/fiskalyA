@@ -10,6 +10,25 @@
   display: inline-block;
   overflow: hidden
 }
+.grmb
+{
+display:none;
+flex-basis: 100%;
+}
+.noti.nov{
+ display:inline-block;
+  margin-left:1em;padding:0em 1em;
+  border-radius: 0.3em;
+  color:white;
+}
+.noti.nov.ad{
+background-color: #600;
+  animation: myAnim 2s ease 0s 1 normal forwards;
+}
+.grm:nth-child(8n){
+
+  border-right:1px solid #eee;
+}
 
 .act {
   background-color: lightsteelblue
@@ -19,10 +38,17 @@
   font-family: "Source Code Pro", "HexEd.it Symbols", "Courier New", Consolas, Menlo, "PT Mono", "Liberation Mono", monospace;
 display:flex;flex-wrap:wrap;
 }
-.box{
-  max-width:200px;
-  font-size:0.8em;
+.boxnov, .box {
+  max-width: 200px;
+  font-size: 0.8em;
+  color: #999;
 }
+.boxnov.ad {
+  max-width: 200px;
+  font-size: 0.8em;
+  animation: myAnimB 2s ease 0s 1 normal forwards;
+}
+
 .g1 {
   width: 64%
 }
@@ -52,4 +78,26 @@ display:flex;flex-wrap:wrap;
 
 .example-sidenav {
   padding: 20px;
+}
+@keyframes myAnim {
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #600;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
+@keyframes myAnimB {
+  0% {
+    color: #fff;
+  }
+  50% {
+   color: #000;
+  }
+  100% {
+    color: #999;
+  }
 }

@@ -2,28 +2,24 @@
 <mat-toolbar color="primary">
 
 
-  <h3> Challenge</h3>
+  <h3> Coding challenge (fiskali)</h3>
 </mat-toolbar>
 
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
 
 
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      To
-    </button>
 
     <div *ngIf="showFiller">
 
 <hr>
       <app-file-upload (onLoadF)="read($event)"></app-file-upload>
 <hr>
-    <b  #tooltip="matTooltip"
-        matTooltip="Copied to clipboard"
-        matTooltipPosition="right">Clipboard</b>
-      <div class="box" id="trigger" (click)="tooltip.show(10)">
+    <b  >Clipboard</b> <span [class]="'noti '+copied">...copied</span>
+      <div [class]="'box'+copied" id="trigger" >
       {{clipboardContent}}
     </div>
+
     </div>
   </mat-drawer>
 
@@ -32,21 +28,21 @@
       <mat-tab *ngFor="let tt of tabs" [label]="tt.name" >
         <div class="gcontent" (mouseup)="mouseUp()" >
         <div class="gr g1">
-         <span  (mouseover)="mOver(nm)" (mousedown)="res(nm)" (mouseup)="resu(nm)" [class]="'grm hexF '.concat(nm.act)" *ngFor="let nm of tt.resulthex">
-          {{nm.hex}}
+          <ng-container *ngFor="let nm of tt.resulthex; let i = index;">
+       <!--     <span *ngIf="i % 8 == 0 && i>0" class="grmb"> </span>-->
+            <span  (mouseover)="mOver(nm)" (mousedown)="res(nm,false)" (mouseup)="resu(nm,false)" [class]="'grm hexF '.concat(nm.act)" >
+          {{nm.hex}} </span>
 
-
-        </span>
-
+          </ng-container>
         </div>
 
 
         <div  class="gr g2">
-      <span  [class]="'grm textF '.concat(nm.act)" *ngFor="let nm of tt.resulthex">
-          {{nm.ascii}}
-
-
-        </span>
+          <ng-container *ngFor="let nm of tt.resulthex; let i = index;">
+      <!--      <span *ngIf="i % 8 == 0 && i>0" class="grmb"> </span>-->
+      <span (mouseover)="mOver(nm)" (mousedown)="res(nm,true)" (mouseup)="resu(nm, true)" [class]="'grm textF '.concat(nm.act)">
+          {{nm.ascii}} </span>
+          </ng-container>
         </div>
 
 
