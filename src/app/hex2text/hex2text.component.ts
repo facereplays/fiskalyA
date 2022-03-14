@@ -122,6 +122,9 @@ nm.act='act';
       }
 
 
+    }else{
+
+  if(nm.act != 'act')  nm.act = 'over';
     }
 
   }
@@ -227,5 +230,9 @@ nm.act='act';
 
   selectTab(event: any) {
     this.resultHex = this.tabs[event.index].resulthex;
+  }
+
+  mOut(nm) {
+   if(nm.act=='over') nm.act='';
   }
 }

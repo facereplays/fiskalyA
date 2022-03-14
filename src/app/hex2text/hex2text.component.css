@@ -7,10 +7,10 @@
 }
 
 .grm {
-  display: inline-block;
+  display: inline-flex;
   overflow: hidden;
   text-transform: uppercase;
-  unicode-bidi: bidi-override;
+  justify-content: center;
 }
 .grmb
 {
@@ -35,6 +35,11 @@ background-color: #600;
 .act {
 background-color: white;
   animation: myAnimG 2s ease 0s 1 normal forwards;
+}
+
+.over {
+  background-color:#eeeefe;
+
 }
 
 .gr {
