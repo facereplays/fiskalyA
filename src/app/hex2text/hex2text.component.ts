@@ -108,7 +108,7 @@ nm.act='act';
    */
   mOver(nm) {
     if (this.selecting) {
-      nm.act = 'act';
+     // nm.act = 'act';
       if (nm.pos > this.startSel) {
         this.endSel = nm.pos;
 
@@ -117,7 +117,7 @@ nm.act='act';
         this.startSel = nm.pos;
       }
       for (let i = this.startSel; i <= this.endSel; i++) {
-        this.resultHex[i].act = 'act';
+       this.resultHex[i].act = 'act';
 
       }
 
