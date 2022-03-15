@@ -57,7 +57,15 @@ export class Hex2textComponent implements OnInit {
     n.act = 'act';
     this.selecting = true;
   }
-
+  resT(e,n: pair, t:boolean) {
+    e.preventDefault();
+    this.resultHex.forEach(a => {
+      a.act = ''
+    });
+    this.startSel = n.pos;
+    n.act = 'act';
+    this.selecting = true;
+  }
   /****
    * MouseUp event
    * filling clipboard with data
@@ -97,7 +105,38 @@ nm.act='act';
     this.clipboard.copy(tex);
     sel.removeAllRanges();
   }
+  resuT(e,nm: pair, t:boolean) {
+    e.preventDefault();
+    let tex = '';
+    this.selecting = false;
+    const sel = document.getSelection();
+    nm.act='act';
 
+    this.resultHex.forEach(a => {
+      const val= t ? a.ascii : a.hex;
+      if(a.act === 'act'){
+        tex += val + ' ';
+
+      }
+    });
+    /***
+     * style animation manipulation for clipboard
+     *
+     */
+    this.copied='nov ad'
+
+    this.zone.run(()=>{
+        setTimeout(()=>{
+          const w=1;
+          this.copied=' nov';},2000);
+      }
+    );
+
+
+    this.clipboardContent = tex;
+    this.clipboard.copy(tex);
+    sel.removeAllRanges();
+  }
   /***
    *
    * mouse over item
@@ -128,7 +167,29 @@ nm.act='act';
     }
 
   }
+  mOverT(e, nm) {
+    e.preventDefault();
+    if (this.selecting) {
+      // nm.act = 'act';
+      if (nm.pos > this.startSel) {
+        this.endSel = nm.pos;
 
+      } else {
+        this.endSel = this.startSel;
+        this.startSel = nm.pos;
+      }
+      for (let i = this.startSel; i <= this.endSel; i++) {
+        this.resultHex[i].act = 'act';
+
+      }
+
+
+    }else{
+
+      if(nm.act != 'act')  nm.act = 'over';
+    }
+
+  }
   /***
    *
    * reading content of file
@@ -231,8 +292,12 @@ nm.act='act';
   selectTab(event: any) {
     this.resultHex = this.tabs[event.index].resulthex;
   }
-
   mOut(nm) {
+
+    if(nm.act=='over') nm.act='';
+  }
+  mOutT(e,nm) {
+    e.preventDefault();
    if(nm.act=='over') nm.act='';
   }
 }
