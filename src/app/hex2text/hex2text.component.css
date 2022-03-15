@@ -143,3 +143,10 @@ display:flex;
     border-bottom: 2px #b0c4de solid;
   }
 }
+.mat-tab-label{
+  height:32px!important;
+  padding-top:18px;
+  background-color: white;
+  border-right: #333333 1px;
+
+}
