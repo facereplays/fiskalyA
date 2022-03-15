@@ -5,13 +5,21 @@
 .textF {
   width: 1em
 }
+.g1 .grm {
+  text-transform: uppercase;
+}
+/****
 
+single cell
+
+ */
 .grm {
   display: inline-flex;
   overflow: hidden;
-  text-transform: uppercase;
+
   justify-content: center;
 }
+
 .grmb
 {
 display:none;
@@ -70,15 +78,20 @@ display:flex;flex-wrap:wrap;
   justify-content: space-evenly;
 
 }
+app-file-upload{
+  border-bottom: 2px #b0c4de solid;display:block;
+  padding-bottom:1em;
 
+}
 .example-container {
   width: auto;
-  margin-top: 2em;
 
+display:flex;
 }
 
 .example-sidenav-content {
   display: flex;
+  flex-grow:1;
   height: 100%;
   align-items: center;
   justify-content: center;
@@ -86,6 +99,9 @@ display:flex;flex-wrap:wrap;
 
 .example-sidenav {
   padding: 20px;
+  min-width:140px;
+
+  border-right: 1px #999999 solid;
 }
 @keyframes myAnim {
   0% {
@@ -116,5 +132,14 @@ display:flex;flex-wrap:wrap;
 
   100% {
     background-color:#b0c4de;
+  }
+}
+@media only screen and (max-width: 575px) {
+  .example-container {
+    flex-direction: column;
+  }
+  .example-sidenav {
+    padding: 12px;
+    border-bottom: 2px #b0c4de solid;
   }
 }

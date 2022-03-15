@@ -2,3 +2,9 @@
   display:none;
 
 }
+.btn{
+  padding:0.5em 0.8em;background-color: #333399;
+  display: flex;justify-content: center;color:white;
+
+}
+.btn span{padding-right:0.5em;}

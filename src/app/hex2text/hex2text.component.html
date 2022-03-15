@@ -5,23 +5,21 @@
   <h3> Coding challenge (fiskaly)</h3>
 </mat-toolbar>
 
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
+<div class="example-container">
+  <div class="example-sidenav">
+  <div *ngIf="showFiller">
 
 
-
-    <div *ngIf="showFiller">
-
-<hr>
       <app-file-upload (onLoadF)="read($event)"></app-file-upload>
-<hr>
-    <b  >Clipboard</b> <span [class]="'noti '+copied">...copied</span>
+
+    <span>Clipboard</span>
+    <span *ngIf="copied != 'nov'" [class]="'noti '+copied">...copied</span>
       <div [class]="'box'+copied" id="trigger" >
       {{clipboardContent}}
     </div>
 
     </div>
-  </mat-drawer>
+  </div>
 
   <div class="example-sidenav-content">
     <mat-tab-group *ngIf="resultHex" (selectedTabChange)="selectTab($event)" [(selectedIndex)]="seleT">
@@ -65,4 +63,4 @@
   -->
   </div>
 
-</mat-drawer-container>
+</div>

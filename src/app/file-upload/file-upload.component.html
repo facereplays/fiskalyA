@@ -1,12 +1,9 @@
-<div class="row">
-  <div class="col-8 up">
-    <label class="btn btn-default p-0">
-      <input #fa type="file" (change)="selectFile($event)" />
-    </label>
-  </div>
-  <div class="col-4">
-    <button class="btn btn-success btn-sm"  (click)="fa.click()">
-      Upload file
-    </button>
-  </div>
-</div>
+
+      <input class="up" #fa type="file" (change)="selectFile($event)" />
+
+
+    <div class="btn btn-success btn-sm"  (click)="fa.click()">
+    <span class="material-icons">
+download_for_offline
+</span>  Upload file
+    </div>
