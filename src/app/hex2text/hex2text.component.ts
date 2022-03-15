@@ -169,7 +169,7 @@ nm.act='act';
   }
   mOverT(e, nm) {
     e.preventDefault();
-
+console.log('enter');
     if (this.selecting) {
       // nm.act = 'act';
       if (nm.pos > this.startSel) {

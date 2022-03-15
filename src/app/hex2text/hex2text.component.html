@@ -30,8 +30,7 @@
        <!--     <span *ngIf="i % 8 == 0 && i>0" class="grmb"> </span>-->
             <span (mouseleave)="mOut(nm)" (mouseout)="mOut(nm)" (mouseover)="mOver(nm)"
                   (mousedown)="res(nm,false)" (mouseup)="resu(nm,false)"
-                  (touchstart)="resT($event,nm,false)" (touchend)="resuT($event,nm,false)"
-                  (touchmove)="mOverT($event,nm)" (touchcancel)="mOutT($event,nm)"
+
                   [class]="'grm hexF '.concat(nm.act)" >
           {{nm.hex}} </span>
 
@@ -43,8 +42,7 @@
           <ng-container *ngFor="let nm of tt.resulthex; let i = index;">
       <!--      <span *ngIf="i % 8 == 0 && i>0" class="grmb"> </span>-->
       <span
-        (touchstart)="res(nm,true)" (touchend)="resu(nm,true)"
-        (touchmove)="mOver(nm)" (touchcancel)="mOut(nm)"
+
         (mouseleave)="mOut(nm)" (mouseout)="mOut(nm)"  (mouseover)="mOver(nm)" (mousedown)="res(nm,true)" (mouseup)="resu(nm, true)" [class]="'grm textF '.concat(nm.act)">
           {{nm.ascii}} </span>
           </ng-container>
